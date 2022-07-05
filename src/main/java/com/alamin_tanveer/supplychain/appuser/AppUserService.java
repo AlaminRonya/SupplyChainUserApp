@@ -1,11 +1,17 @@
 package com.alamin_tanveer.supplychain.appuser;
 
+import com.alamin_tanveer.supplychain.email.EmailService;
+import com.alamin_tanveer.supplychain.registration.token.ConfirmationToken;
+import com.alamin_tanveer.supplychain.registration.token.ConfirmationTokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Service
 public class AppUserService implements UserDetailsService {
@@ -17,6 +23,10 @@ public class AppUserService implements UserDetailsService {
 
     @Autowired
     private  BCryptPasswordEncoder bCryptPasswordEncoder;
+    @Autowired
+    private ConfirmationTokenService confirmationTokenService;
+    @Autowired
+    private EmailService emailService;
 
 
     @Override
@@ -41,7 +51,26 @@ public class AppUserService implements UserDetailsService {
 
         appUserRepository.save(appUser);
 
-        return "it works";
+
+        // TODO send to confirmation
+        String token;
+        while (true){
+            token = UUID.randomUUID().toString();
+            final boolean present = confirmationTokenService.getToken(token).isPresent();
+            if (!present){
+                ConfirmationToken confirmationToken = new ConfirmationToken(token, LocalDateTime.now(),
+                        LocalDateTime.now().plusHours(48), appUser);
+                confirmationTokenService.saveConfirmationToken(confirmationToken);
+                break;
+            }
+
+        }
+
+        // TODO send to email
+        emailService.send(appUser.getName(), appUser.getEmail());
+
+
+        return token;
     }
 
 

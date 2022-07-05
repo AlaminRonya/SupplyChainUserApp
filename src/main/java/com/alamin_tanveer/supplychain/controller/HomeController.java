@@ -37,17 +37,18 @@ public class HomeController {
         return "registration";
     }
     @PostMapping("/user/add")
-    public String userRegistration( @ModelAttribute("registrationRequest")RegistrationRequest registrationRequest, @RequestParam("profile_image") MultipartFile file, HttpSession session) throws IOException {
+    public String userRegistration( @ModelAttribute("registrationRequest")RegistrationRequest registrationRequest, @RequestParam("profile") MultipartFile profile,
+                                    @RequestParam("upload_file") MultipartFile document, HttpSession session) throws IOException {
         final String realPath = session.getServletContext().getRealPath("/");
         String profilePath = realPath+Constant.USER_UPLOAD_PROFILE;
 
-        Attachment attachment = Utils.saveFile(file, profilePath);
+        Attachment attachment = Utils.saveFile(profile, profilePath);
         final Attachment save = attachmentRepo.save(attachment);
 
 
-        final String register = registrationService.register(registrationRequest);
-        System.out.println("==========> "+register);
-        return "redirect:/api/page/v1/show/"+save.getId();
+        final String email = registrationService.register(registrationRequest);
+        System.out.println("==========> "+email);
+        return "redirect:/api/page/v1/home";
     }
 
     @GetMapping("/show/{id}")

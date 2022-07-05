@@ -25,7 +25,7 @@
                 <div class="form-group">
                     <label for="name">Name</label>
                     <form:input type="text" name="name" id="name" path="userName"  placeholder="Your Name" class="form-control form-control-lg"/>
-                    <form:errors path="userName" cssClass="error"/>
+<%--                    <form:errors path="userName" cssClass="error"/>--%>
                 </div>
                 <div class="form-group">
                     <label for="name">NID</label>
@@ -34,6 +34,11 @@
                 <div class="form-group">
                     <label for="name">Trade License number</label>
                     <form:input type="number" name="name" id="name" path="tradeLicenseNumber"  placeholder="Your Trade License number" class="form-control form-control-lg"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="name">Trade License Upload file pdf</label>
+                    <input type= "file" name="upload_file" multiple="multiple" accept = "application/pdf"/>
                 </div>
 
                 <div class="form-group">
@@ -53,8 +58,11 @@
                     <form:radiobutton path="gender" value="Male"/>Male
                     <form:radiobutton path="gender" value="Female"/>Female
                 </div>
+                <div class="form-group">
+                    <label for="name">Trade License Upload file pdf</label>
+                    <input type="file" name="profile_image" multiple="multiple" accept="image/*"/>
+                </div>
 
-                <input type="file" name="profile_image" multiple="multiple" accept="image/*"/>
 
                 <button type="submit" class="btn btn-primary">Create</button>
             </form:form>

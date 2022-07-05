@@ -14,6 +14,13 @@ public class RegistrationService {
     private AppUserService appUserService;
     @Autowired
     private  EmailValidator emailValidator;
+    @Autowired
+    private NIDVerification nidVerification;
+    @Autowired
+    private TradeLicenseVerification tradeLicenseVerification;
+    @Autowired
+    private BankAccountVerification bankAccountVerification;
+
 
 
     public String register(RegistrationRequest request) {
@@ -29,7 +36,6 @@ public class RegistrationService {
                         request.getEmail(),
                         request.getPassword(),
                         AppUserRole.USER
-
                 )
         );
         return token;

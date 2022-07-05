@@ -21,7 +21,6 @@ import java.util.Map;
 @Entity
 public class AppUser implements UserDetails, Serializable {
 
-
     @SequenceGenerator(
             name = "user_sequence",
             sequenceName = "user_sequence",
@@ -33,7 +32,7 @@ public class AppUser implements UserDetails, Serializable {
             generator = "user_sequence"
     )
     private Long id;
-    private String userName;
+    private String name;
     private String email;
     private String password;
     @Enumerated(EnumType.STRING)
@@ -42,15 +41,15 @@ public class AppUser implements UserDetails, Serializable {
     private Boolean enabled = false;
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "attachment_id_tl", referencedColumnName = "id")
-    private Attachment attachmentTradeLicense;
+    @JoinColumn(name = "attachment_id_trade", referencedColumnName = "id")
+    private Attachment tradeLicenseDocument;
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "attachment_id_p", referencedColumnName = "id")
-    private Attachment attachmentProfile;
+    @JoinColumn(name = "attachment_id_profile", referencedColumnName = "id")
+    private Attachment profilePhoto;
 
-    public AppUser(String userName, String email, String password, AppUserRole appUserRole) {
-        this.userName = userName;
+    public AppUser(String name, String email, String password, AppUserRole appUserRole) {
+        this.name = name;
         this.email = email;
         this.password = password;
         this.appUserRole = appUserRole;
@@ -61,6 +60,7 @@ public class AppUser implements UserDetails, Serializable {
         SimpleGrantedAuthority authority = new SimpleGrantedAuthority(appUserRole.name());
         return Collections.singletonList(authority);
     }
+
 
     @Override
     public String getPassword() {

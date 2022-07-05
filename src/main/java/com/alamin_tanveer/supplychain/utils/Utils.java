@@ -13,7 +13,6 @@ public class Utils {
     public static Attachment saveFile(MultipartFile file, String path) throws IOException {
 
         if (!file.isEmpty()){
-
             String filePath = path + file.getOriginalFilename();
             file.transferTo(new File(filePath));
             Attachment attachment = new Attachment();

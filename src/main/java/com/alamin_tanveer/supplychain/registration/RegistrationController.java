@@ -14,10 +14,10 @@ public class RegistrationController {
     @Autowired
     private  RegistrationService registrationService;
 
-    @PostMapping
-    public String register(@RequestBody RegistrationRequest request) {
-        return registrationService.register(request);
-    }
+//    @PostMapping
+//    public String register(@RequestBody RegistrationRequest request) {
+//        return registrationService.register(request);
+//    }
 
 
 }

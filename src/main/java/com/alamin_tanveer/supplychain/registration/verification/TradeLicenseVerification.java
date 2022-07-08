@@ -1,4 +1,4 @@
-package com.alamin_tanveer.supplychain.registration;
+package com.alamin_tanveer.supplychain.registration.verification;
 
 import org.springframework.stereotype.Service;
 

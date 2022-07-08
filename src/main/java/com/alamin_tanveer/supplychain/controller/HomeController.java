@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpSession;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.Optional;
 
 
@@ -37,15 +38,17 @@ public class HomeController {
         return "registration";
     }
     @PostMapping("/user/add")
-    public String userRegistration( @ModelAttribute("registrationRequest")RegistrationRequest registrationRequest, @RequestParam("profile") MultipartFile profile,
-                                    @RequestParam("upload_file") MultipartFile document, HttpSession session) throws IOException {
+    public String userRegistration( @ModelAttribute("registrationRequest")RegistrationRequest registrationRequest, @RequestParam("profile_image") MultipartFile profile,
+                                    @RequestParam("upload_file") MultipartFile document,
+                                    @RequestParam("dob") LocalDate date,
+                                    HttpSession session) throws IOException {
         final String realPath = session.getServletContext().getRealPath("/");
         String profilePath = realPath+Constant.USER_UPLOAD_PROFILE;
 
         Attachment attachment = Utils.saveFile(profile, profilePath);
         final Attachment save = attachmentRepo.save(attachment);
 
-
+        registrationRequest.setDob(date);
         final String email = registrationService.register(registrationRequest);
         System.out.println("==========> "+email);
         return "redirect:/api/page/v1/home";

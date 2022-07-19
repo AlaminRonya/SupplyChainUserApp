@@ -5,8 +5,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class NameValidator implements Predicate<String> {
-//    https://www.geeksforgeeks.org/how-to-validate-a-username-using-regular-expressions-in-java/
-    private final Pattern VALID_NAME_REGEX = Pattern.compile("^[A-Za-z]\\w{5,29}$");
+    private final Pattern VALID_NAME_REGEX = Pattern.compile("^[A-Z][a-zA-z .:-]+");
 
     @Override
     public boolean test(String s) {

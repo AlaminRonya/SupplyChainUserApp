@@ -24,13 +24,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .csrf().disable()
+                .cors().disable()
                 .authorizeRequests()
-                    .antMatchers("/api/v*/registration/**",
-                            "/api/page/v*/**")
-                    .permitAll()
-                .anyRequest()
-                .authenticated().and()
-                .formLogin();
+                .antMatchers("/page/v*/registration/**")
+                .permitAll()
+                .antMatchers("/page/v*/user/**").hasAnyAuthority("USER","DEALER_USER")
+                .antMatchers("/page/v*/dealers/**").hasAuthority("DEALER_USER")
+                .and()
+                .formLogin(form-> form
+                        .defaultSuccessUrl("/page/v1/user/home")
+                        .loginPage("/login-process")
+                        .failureUrl("/login?error=true")
+                );
     }
 
     @Override

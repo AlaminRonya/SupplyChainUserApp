@@ -36,15 +36,8 @@ public class AppUser implements UserDetails, Serializable {
     @Enumerated(EnumType.STRING)
     private AppUserRole appUserRole;
     private Boolean locked = false;
-    private Boolean enabled = false;
+    private Boolean enabled = true;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "attachment_id_trade", referencedColumnName = "id")
-    private Attachment tradeLicenseDocument;
-
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "attachment_id_profile", referencedColumnName = "id")
-    private Attachment profilePhoto;
 
     public AppUser(String name, String email, String password, AppUserRole appUserRole) {
         this.name = name;

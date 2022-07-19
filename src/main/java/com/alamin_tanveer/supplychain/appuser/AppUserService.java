@@ -67,7 +67,7 @@ public class AppUserService implements UserDetailsService {
         }
 
         // TODO send to email
-        emailService.send(appUser.getName(), appUser.getEmail());
+//        emailService.send(appUser.getName(), appUser.getEmail());
 
 
         return token;

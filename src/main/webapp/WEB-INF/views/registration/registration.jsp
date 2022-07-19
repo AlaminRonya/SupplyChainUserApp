@@ -10,10 +10,9 @@
 <html>
 <head>
     <title>Title</title>
-    <jsp:include page="./include/css.jsp"/>
+    <jsp:include page="../include/css.jsp"/>
 </head>
 <body>
-<jsp:include page="./include/navbar.jsp"/>
 <div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-offset="0" class="scrollspy-example" tabindex="0">
 
     <div class="container-fluid">
@@ -23,24 +22,11 @@
                 <h3 style="margin-top: 10px">App User Registration</h3>
                 <p>Please fill out this to register</p>
                 <%--@elvariable id="registrationRequest" type="com.alamin_tanveer.supplychain.registration.RegistrationRequest"--%>
-                <form:form action="${pageContext.request.contextPath}/api/page/v1/user/add" method="POST" modelAttribute="registrationRequest" enctype="multipart/form-data">
+                <form:form action="${pageContext.request.contextPath}/page/v1/registration/add" method="POST" modelAttribute="registrationRequest">
                     <div class="form-group">
                         <label for="name">Name</label>
                         <form:input type="text" name="name" id="name" path="userName"  placeholder="Your Name" class="form-control form-control-lg"/>
                             <%--                    <form:errors path="userName" cssClass="error"/>--%>
-                    </div>
-                    <div class="form-group">
-                        <label for="name">NID</label>
-                        <form:input type="number" name="name" id="name" path="userNID"  placeholder="Your NID number" class="form-control form-control-lg"/>
-                    </div>
-                    <div class="form-group">
-                        <label for="name">Trade License number</label>
-                        <form:input type="number" name="name" id="name" path="tradeLicenseNumber"  placeholder="Your Trade License number" class="form-control form-control-lg"/>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="name">Trade License Upload file pdf</label>
-                        <input type= "file" name="upload_file" multiple="multiple" accept = "application/pdf"/>
                     </div>
 
                     <div class="form-group">
@@ -54,25 +40,11 @@
                         <form:input type="password" class="form-control form-control-lg" path="password" placeholder="Password" name="password"
                                     id="password"/>
                     </div>
-
                     <div class="form-group">
-                        <form:label path="gender">Gender </form:label>
-                        <form:radiobutton path="gender" value="Male"/>Male
-                        <form:radiobutton path="gender" value="Female"/>Female
+                        <label for="password">Password</label>
+                        <form:input type="password" class="form-control form-control-lg" path="confirmedPassword" placeholder="Confirmed Password" name="confirmedPassword"
+                                    id="confirmedPassword"/>
                     </div>
-                    <div class="form-group">
-                        <label>Date of Birth</label>
-                        <input type="date" name="dob" />
-                    </div>
-                    <div class="form-group">
-                        <label for="phoneNumber">Your phone number</label>
-                        <form:input type="number" name="phoneNumber" path="phoneNumber"/>
-                    </div>
-                    <div class="form-group">
-                        <label for="name">Upload Your Photo</label>
-                        <input type="file" name="profile_image" multiple="multiple" accept="image/*"/>
-                    </div>
-
 
                     <button type="submit" class="btn btn-primary">Create</button>
                 </form:form>

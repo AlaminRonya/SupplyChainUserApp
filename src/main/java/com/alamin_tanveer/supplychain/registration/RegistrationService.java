@@ -31,11 +31,6 @@ public class RegistrationService {
         AppUserRegistrationValidator.ValidationResult result = AppUserRegistrationValidator.isName()
                 .and(AppUserRegistrationValidator.isEmail())
                 .and(AppUserRegistrationValidator.isPasswordValid())
-                .and(AppUserRegistrationValidator.isPhoneNumberValid())
-                .and(AppUserRegistrationValidator.isAdultValid())
-                .and(AppUserRegistrationValidator.isNIDValid())
-                .and(AppUserRegistrationValidator.isTradeLicenseValid())
-                .and(AppUserRegistrationValidator.isAccountNumberValid())
                 .apply(request);
 
         if (result != AppUserRegistrationValidator.ValidationResult.SUCCESS){

@@ -1,9 +1,14 @@
 package com.alamin_tanveer.supplychain.controller;
 
+import com.alamin_tanveer.supplychain.dto.request.DealerDto;
+import com.alamin_tanveer.supplychain.utils.CurrentUser;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.Date;
 
 
 @Controller
@@ -18,8 +23,17 @@ public class BaseController {
     }
 
     @GetMapping("/addDealer")
-    public String dealerForm(){
-        return "dealers/dealerRegistration";
+    public String dealerForm(Model model, @ModelAttribute("dealerDto") DealerDto dto){
+        model.addAttribute("currentUserEmail", CurrentUser.getCurrentUserName());
+        return "registration/dealerRegistration";
+    }
+
+    @PostMapping("/addDealer")
+    public String dealerFormSubmitted(Model model, @ModelAttribute("dealerDto") DealerDto dto, @RequestParam("upload_file") MultipartFile tinFile, @RequestParam("profile_image") MultipartFile photo){
+        dto.setUsername(CurrentUser.getCurrentUserName());
+        System.out.println("=========>"+dto);
+        model.addAttribute("currentUserEmail", CurrentUser.getCurrentUserName());
+        return "redirect:/page/v1/user/addDealer";
     }
 
 

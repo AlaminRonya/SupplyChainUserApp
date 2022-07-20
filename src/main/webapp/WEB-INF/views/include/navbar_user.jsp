@@ -25,7 +25,7 @@
                     <a class="nav-link"  href="#">Delivery</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link"  href="#">Dealer Registration</a>
+                    <a class="nav-link"  href="${pageContext.request.contextPath}/page/v1/user/addDealer">Dealer Registration</a>
                 </li>
             </ul>
 

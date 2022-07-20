@@ -31,7 +31,7 @@ public class RegistrationController {
         }
         registrationService.register(registrationRequest);
 
-
         return "redirect:/login-process";
     }
+
 }

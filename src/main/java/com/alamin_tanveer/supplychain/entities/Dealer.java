@@ -8,6 +8,8 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Date;
+
 @Data
 @Entity
 @Table(name = "dealer")
@@ -25,12 +27,15 @@ public class Dealer {
     @Setter(AccessLevel.NONE)
     private Long id;
     private String phoneNumber;
-    private LocalDate dob;
+    private Date dob;
     private String userNID;
     private String userBankAccountNumber;
     private String tradeLicenseNumber;
     private String gender;
     private Boolean active = false;
+    private Date createdAt;
+    private Date modifiedAt;
+    private Date deletedAt;
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", referencedColumnName = "id")

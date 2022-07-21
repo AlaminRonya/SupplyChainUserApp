@@ -24,6 +24,12 @@
                 <label name="username" id="username" class="form-control form-control-lg">${currentUserEmail}</label>
                     <%--                    <form:errors path="userName" cssClass="error"/>--%>
             </div>
+
+            <div class="form-group">
+                <label for="accountNumber">Bank Account number</label>
+                <form:input type="number" name="accountNumber" id="accountNumber" path="userBankAccountNumber"  placeholder="Your Bank Account number" class="form-control form-control-lg"/>
+            </div>
+
             <div class="form-group">
                 <label for="name">NID</label>
                 <form:input type="number" name="name" id="name" path="userNID"  placeholder="Your NID number" class="form-control form-control-lg"/>
@@ -44,10 +50,10 @@
                 <form:radiobutton path="gender" value="Male"/>Male
                 <form:radiobutton path="gender" value="Female"/>Female
             </div>
-<%--            <div class="form-group">--%>
-<%--                <label>Date of Birth</label>--%>
-<%--                <input type="date" name="dob" />--%>
-<%--            </div>--%>
+            <div class="form-group">
+                <label>Date of Birth</label>
+                <form:input type="date" name="dob" path="dob" />
+            </div>
             <div class="form-group">
                 <label for="phoneNumber">Your phone number</label>
                 <form:input type="number" name="phoneNumber" path="phoneNumber"/>

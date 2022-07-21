@@ -25,26 +25,26 @@ public class CustomerService {
     private AccountRepo accountRepo;
     private final LocalDate localDate = LocalDate.now();
 
-    public void add(){
-        Customer customer = new Customer();
-        customer.setCustomerName("Md. Rony");
-        customer.setAccountNumber("12345670");
-        customer.setCreatedAt(Date.from(localDate.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()));
-
-        Customer cus = customerRepo.save(customer);
-
-        Account account = new Account();
-        account.setCreatedAt(Date.from(localDate.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()));
-        account.setAccountNumber(customer.getAccountNumber());
-        Account acc = accountRepo.save(account);
-
-        Bank bank = new Bank();
-        bank.setBankName("DBBL");
-        bank.setCreatedAt(Date.from(localDate.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()));
-        bank.setCustomer(cus);
-        bank.setAccount(acc);
-        bankRepo.save(bank);
-    }
+//    public void add(){
+//        Customer customer = new Customer();
+//        customer.setCustomerName("Md. Rony");
+//        customer.setAccountNumber("12345670");
+//        customer.setCreatedAt(Date.from(localDate.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()));
+//
+//        Customer cus = customerRepo.save(customer);
+//
+//        Account account = new Account()
+//        account.setCreatedAt(Date.from(localDate.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()));
+//        account.setAccountNumber(customer.getAccountNumber());
+//        Account acc = accountRepo.save(account);
+//
+//        Bank bank = new Bank();
+//        bank.setBankName("DBBL");
+//        bank.setCreatedAt(Date.from(localDate.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()));
+//        bank.setCustomer(cus);
+//        bank.setAccount(acc);
+//        bankRepo.save(bank);
+//    }
 
     public List<Bank> insert(List<Customer> customers){
 

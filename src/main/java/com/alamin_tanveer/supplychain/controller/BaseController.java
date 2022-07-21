@@ -1,19 +1,25 @@
 package com.alamin_tanveer.supplychain.controller;
 
 import com.alamin_tanveer.supplychain.dto.request.DealerDto;
+import com.alamin_tanveer.supplychain.service.DealerService;
 import com.alamin_tanveer.supplychain.utils.CurrentUser;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 
 @Controller
 @RequestMapping("/page/v1/user")
 public class BaseController {
+    @Autowired
+    private DealerService dealerService;
+
 //    HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
 
     @GetMapping("/home")
@@ -29,7 +35,12 @@ public class BaseController {
     }
 
     @PostMapping("/addDealer")
-    public String dealerFormSubmitted(Model model, @ModelAttribute("dealerDto") DealerDto dto, @RequestParam("upload_file") MultipartFile tinFile, @RequestParam("profile_image") MultipartFile photo){
+    public String dealerFormSubmitted(Model model, @ModelAttribute("dealerDto") DealerDto dto,
+                                      @RequestParam("upload_file") MultipartFile tinFile,
+                                      @RequestParam("profile_image") MultipartFile photo){
+
+        dealerService.addDealer(dto, tinFile, photo);
+
         dto.setUsername(CurrentUser.getCurrentUserName());
         System.out.println("=========>"+dto);
         model.addAttribute("currentUserEmail", CurrentUser.getCurrentUserName());

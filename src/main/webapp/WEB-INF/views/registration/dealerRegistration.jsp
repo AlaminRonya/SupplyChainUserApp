@@ -35,12 +35,12 @@
                 <form:input type="number" name="name" id="name" path="userNID"  placeholder="Your NID number" class="form-control form-control-lg"/>
             </div>
             <div class="form-group">
-                <label for="name">Trade License number</label>
+                <label for="name">Trade License number </label>
                 <form:input type="number" name="name" id="name" path="tradeLicenseNumber"  placeholder="Your Trade License number" class="form-control form-control-lg"/>
             </div>
 
             <div class="form-group">
-                <label for="name">Trade License Upload file pdf</label>
+                <label for="name">Trade License Upload file pdf maximum 1 MB</label>
                 <input type= "file" name="upload_file" multiple="multiple" accept = "application/pdf"/>
             </div>
 
@@ -59,7 +59,7 @@
                 <form:input type="number" name="phoneNumber" path="phoneNumber"/>
             </div>
             <div class="form-group">
-                <label for="name">Upload Your Photo</label>
+                <label for="name">Upload Your Photo maximum 1 MB</label>
                 <input type="file" name="profile_image" multiple="multiple" accept="image/*"/>
             </div>
 

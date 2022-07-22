@@ -40,4 +40,14 @@ public class Dealer {
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private AppUser user;
+
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "attachment_id_trade", referencedColumnName = "id")
+    private Attachment tradeLicenseDocument;
+
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "attachment_id_profile", referencedColumnName = "id")
+    private Attachment profilePhoto;
+
+
 }

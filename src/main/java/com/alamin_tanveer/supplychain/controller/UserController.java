@@ -10,13 +10,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.time.LocalDate;
-import java.util.Date;
+import java.io.IOException;
 
 
 @Controller
 @RequestMapping("/page/v1/user")
-public class BaseController {
+public class UserController {
     @Autowired
     private DealerService dealerService;
 
@@ -37,7 +36,10 @@ public class BaseController {
     @PostMapping("/addDealer")
     public String dealerFormSubmitted(Model model, @ModelAttribute("dealerDto") DealerDto dto,
                                       @RequestParam("upload_file") MultipartFile tinFile,
-                                      @RequestParam("profile_image") MultipartFile photo){
+                                      @RequestParam("profile_image") MultipartFile photo) throws IOException {
+        if (tinFile.isEmpty() && photo.isEmpty()){
+            return "redirect:/page/v1/user/addDealer";
+        }
 
         dealerService.addDealer(dto, tinFile, photo);
 

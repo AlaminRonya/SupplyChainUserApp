@@ -37,8 +37,9 @@
                     </div>
                     <div class="form-group">
                         <label for="password">Password</label>
-                        <form:input type="password" class="form-control form-control-lg" path="password" placeholder="Password" name="password"
+                        <form:input type="password" class="form-control form-control-lg" path="password" placeholder="Enter your password" name="password"
                                     id="password"/>
+                        <small id="emailHelp" class="form-text text-muted">One uppercase,lowercase,numeric and special symbol character 8 and 20</small>
                     </div>
                     <div class="form-group">
                         <label for="password">Password</label>

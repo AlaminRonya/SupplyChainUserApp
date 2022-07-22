@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 
 @Controller
-//@RequestMapping("/page/v1/dealers/products")
-@RequestMapping("/page/v1/user/products")
+@RequestMapping("/page/v1/dealers/products")
+//@RequestMapping("/page/v1/user/products")
 public class ProductController {
     @Autowired
     private ProductService productService;

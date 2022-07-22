@@ -58,7 +58,7 @@ public class DealerService {
 
         final Attachment tinAttachment = Utils.saveFile(tinFile, Constant.USER_UPLOAD_TRADE_LICENSE);
         final Attachment tinFilePdf = attachmentService.addAttachment(tinAttachment);
-        final Attachment photoAttachment = Utils.saveFile(photo, Constant.USER_UPLOAD_PROFILE);
+        final Attachment photoAttachment = Utils.saveImage(photo, Constant.USER_UPLOAD_PROFILE);
         final Attachment profilePhoto = attachmentService.addAttachment(photoAttachment);
 
         final AppUser appUser = appUserRepository.findByEmail(CurrentUser.getCurrentUserName()).orElse(null);

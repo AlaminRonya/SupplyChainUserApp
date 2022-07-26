@@ -1,7 +1,6 @@
-package com.alamin_tanveer.supplychain.entities.order_proccess;
+package com.alamin_tanveer.supplychain.entities.order_process;
 
 import com.alamin_tanveer.supplychain.entities.product.Product;
-import com.alamin_tanveer.supplychain.entities.product.ProductInventory;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Setter;
@@ -26,7 +25,7 @@ public class CartItem {
     @Setter(AccessLevel.NONE)
     private Long id;
     private String username;
-    private Long quantity;
+    private Long quantity= 0L;
     private Date createdAt;
     private Date modifiedAt;
 

@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -51,6 +52,18 @@ public class ProductService {
 
     private List<Product> getProducts(){
         return productRepo.findAll().stream().filter(p -> p.getDeletedAt() == null && p.getCategory().getActive() && p.getProductInventory().getQuantity() > 0).toList();
+    }
+
+    public ResponseProductDto getProductAddCardItem(Long id){
+        return productSearch(id) != null ? productConverter.getResponseProductDto(productSearch(id)) : null;
+    }
+    public Product getProduct(Long id){
+        return productSearch(id);
+    }
+
+
+    private Product productSearch(Long id){
+        return productRepo.findById(id).orElse(null);
     }
 
 

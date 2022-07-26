@@ -1,4 +1,4 @@
-package com.alamin_tanveer.supplychain.entities.order_proccess;
+package com.alamin_tanveer.supplychain.entities.order_process;
 
 import lombok.AccessLevel;
 import lombok.Data;

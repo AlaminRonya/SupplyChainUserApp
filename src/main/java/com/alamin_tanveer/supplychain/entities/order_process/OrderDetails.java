@@ -1,7 +1,6 @@
-package com.alamin_tanveer.supplychain.entities.order_proccess;
+package com.alamin_tanveer.supplychain.entities.order_process;
 
 import com.alamin_tanveer.supplychain.appuser.AppUser;
-import com.alamin_tanveer.supplychain.entities.product.Product;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Setter;

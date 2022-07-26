@@ -43,7 +43,7 @@
                                     <p>TK: <span>${responseProductDto.price}</span></p>
                                     <p>Product Description: <span>${responseProductDto.description}</span></p>
                                     <p>Product SKU: <span>${responseProductDto.SKU}</span></p>
-                                    <a href="${pageContext.request.contextPath}${responseProductDto.id}" class="btn btn-warning">View Product</a>
+                                    <a href="${pageContext.request.contextPath}/page/v1/dealers/products/cartItem/${responseProductDto.id}" class="btn btn-warning">View Product</a>
                                 </div>
 
                             </div>

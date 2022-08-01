@@ -1,6 +1,7 @@
 package com.alamin_tanveer.supplychain.appuser;
 
 import com.alamin_tanveer.supplychain.entities.Attachment;
+import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;

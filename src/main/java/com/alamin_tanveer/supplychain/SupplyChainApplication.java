@@ -1,5 +1,8 @@
 package com.alamin_tanveer.supplychain;
 
+import com.alamin_tanveer.supplychain.appuser.AppUser;
+import com.alamin_tanveer.supplychain.appuser.AppUserRole;
+import com.alamin_tanveer.supplychain.appuser.AppUserService;
 import com.alamin_tanveer.supplychain.entities.bank.Customer;
 import com.alamin_tanveer.supplychain.entities.bank.account.Account;
 import com.alamin_tanveer.supplychain.entities.bank.account.Bank;
@@ -112,6 +115,16 @@ public class SupplyChainApplication {
 //        };
 //    }
 
+    @Bean
+    CommandLineRunner addAppUser(AppUserService service){
+        return args -> {
+            AppUser user = new AppUser("User", "user@gmail.com","asdfHp00@", AppUserRole.USER);
+            AppUser dealer = new AppUser("User", "dealer@gmail.com","asdfHp00@", AppUserRole.DEALER_USER);
+//            AppUser accountManager = new AppUser("User", "account_manager@gmail.com","asdfHp00@", AppUserRole.ACCOUNT_MANAGER);
+            service.addUserTest(user);
+            service.addUserTest(dealer);
+        };
+    }
 
 
 //   end of working code

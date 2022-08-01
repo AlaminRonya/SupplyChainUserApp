@@ -6,9 +6,11 @@ import com.alamin_tanveer.supplychain.converter.DealerConverter;
 import com.alamin_tanveer.supplychain.dto.request.DealerDto;
 import com.alamin_tanveer.supplychain.entities.Attachment;
 import com.alamin_tanveer.supplychain.entities.Dealer;
+import com.alamin_tanveer.supplychain.entities.product.ProductCategory;
 import com.alamin_tanveer.supplychain.registration.validator.AppDealerRegistrationValidator;
 import com.alamin_tanveer.supplychain.registration.verification.AppDealerRegistrationVerification;
 import com.alamin_tanveer.supplychain.repositories.DealerRepo;
+import com.alamin_tanveer.supplychain.repositories.product.ProductCategoryRepo;
 import com.alamin_tanveer.supplychain.utils.Constant;
 import com.alamin_tanveer.supplychain.utils.CurrentUser;
 import com.alamin_tanveer.supplychain.utils.Utils;
@@ -18,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.List;
 
 @Service
 public class DealerService {
@@ -31,6 +34,8 @@ public class DealerService {
     private AppDealerRegistrationVerification appDealerRegistrationVerification;
     @Autowired
     private AttachmentService attachmentService;
+    @Autowired
+    private ProductCategoryRepo productCategoryRepo;
 
 
     public void addDealer(DealerDto dto, MultipartFile tinFile, MultipartFile photo) throws IOException {
@@ -74,5 +79,10 @@ public class DealerService {
             System.out.println("Not insert dealer");
         }
 
+    }
+
+
+    public List<String> getAllCategory(){
+        return productCategoryRepo.findAll().stream().map(ProductCategory::getName).toList();
     }
 }

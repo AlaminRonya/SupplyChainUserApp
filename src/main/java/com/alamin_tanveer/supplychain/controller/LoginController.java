@@ -14,10 +14,12 @@ import java.util.List;
 
 @Controller
 public class LoginController {
+    @Autowired
+    private CustomerService customerService;
 
     @GetMapping("/login-process")
     public String getLoginPage(){
-
+        customerService.addListOfCustomer();
         return "auth/login";
     }
 

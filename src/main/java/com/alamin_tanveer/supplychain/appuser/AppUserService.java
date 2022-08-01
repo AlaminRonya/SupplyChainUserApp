@@ -73,5 +73,24 @@ public class AppUserService implements UserDetailsService {
         return token;
     }
 
+    public void addUserTest(AppUser appUser){
+        boolean userExists = appUserRepository.findByEmail(appUser.getEmail()).isPresent();
+
+        if (!userExists) {
+            String encodedPassword = bCryptPasswordEncoder.encode(appUser.getPassword());
+            appUser.setPassword(encodedPassword);
+            appUserRepository.save(appUser);
+        }
+
+    }
+
+    public String getUserRole(String username){
+        final AppUser user = appUserRepository.findByEmail(username).orElse(null);
+        if (user != null){
+            return user.getAppUserRole().toString();
+        }
+        return null;
+    }
+
 
 }

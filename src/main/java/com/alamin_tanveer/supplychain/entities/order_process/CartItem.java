@@ -25,7 +25,7 @@ public class CartItem {
     @Setter(AccessLevel.NONE)
     private Long id;
     private String username;
-    private Long quantity= 0L;
+    private Integer quantity= 0;
     private Date createdAt;
     private Date modifiedAt;
 

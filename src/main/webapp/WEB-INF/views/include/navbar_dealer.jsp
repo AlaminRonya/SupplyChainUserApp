@@ -19,14 +19,14 @@
                     <a class="nav-link"  href="${pageContext.request.contextPath}/">Account</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link"  href="${pageContext.request.contextPath}/">Order</a>
+                    <a class="nav-link"  href="${pageContext.request.contextPath}/page/v1/dealers/products/view/order">Order</a>
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link"  href="${pageContext.request.contextPath}/">Delivery Pending</a>
                 </li>
 
                 <li class="nav-item active">
-                    <a class="nav-link"  href="${pageContext.request.contextPath}/">Cart</a>
+                    <a class="nav-link"  href="${pageContext.request.contextPath}/page/v1/dealers/products/cartItem/all">Cart</a>
                 </li>
             </ul>
 

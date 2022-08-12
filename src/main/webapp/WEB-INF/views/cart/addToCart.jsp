@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%--
   Created by IntelliJ IDEA.
   User: User
@@ -27,7 +28,22 @@
                                 <p>TK: <span>${responseProductDto.price}</span></p>
                                 <p>Product Description: <span>${responseProductDto.description}</span></p>
                                 <p>Product SKU: <span>${responseProductDto.SKU}</span></p>
-                                <a href="${pageContext.request.contextPath}/page/v1/dealers/products/addCart/${responseProductDto.id}" class="btn btn-warning">Add Cart</a>
+                                <p>Discount: <span>${responseProductDto.responseDiscountDto.discountPercent}</span></p>
+
+
+                                <%--@elvariable id="addCartQuantityDto" type="com.alamin_tanveer.supplychain.dto.request.AddCartQuantityDto"--%>
+                                <form:form action="${pageContext.request.contextPath}/page/v1/dealers/products/addCart/${responseProductDto.id}" method="post" modelAttribute="addCartQuantityDto">
+                                    <input type="button" onclick="decrementValue()" value="-" />
+                                    <form:input type="number" name="quantity" value="1" maxlength="2" max="10" size="1" id="number"   path="qty"/>
+                                    <input type="button" onclick="incrementValue()" value="+" />
+                                    <br/>
+                                    <br/>
+                                    <button type="submit" class="btn btn-primary">Add Cart</button>
+                                </form:form>
+
+
+
+<%--                                <a href="${pageContext.request.contextPath}/page/v1/dealers/products/addCart/${responseProductDto.id}" class="btn btn-warning">Add Cart</a>--%>
                             </div>
 
                         </div>
@@ -38,5 +54,28 @@
         </div>
     </div>
 
+
+
 </body>
+<script type="text/javascript">
+    function incrementValue()
+    {
+        let value = parseInt(document.getElementById('number').value, 10);
+        value = isNaN(value) ? 0 : value;
+        if(value<10){
+            value++;
+            document.getElementById('number').value = value;
+        }
+    }
+    function decrementValue()
+    {
+        let value = parseInt(document.getElementById('number').value, 10);
+        value = isNaN(value) ? 0 : value;
+        if(value>1){
+            value--;
+            document.getElementById('number').value = value;
+        }
+
+    }
+</script>
 </html>

@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Data
 @Entity
@@ -22,4 +23,9 @@ public class PaymentDetails {
     )
     @Setter(AccessLevel.NONE)
     private Long id;
+    private Double amount;
+    private Date createdAt;
+    private Date modifiedAt;
+    private String username;
+    private String status;
 }

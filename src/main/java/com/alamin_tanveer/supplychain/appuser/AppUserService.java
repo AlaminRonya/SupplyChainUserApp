@@ -92,5 +92,9 @@ public class AppUserService implements UserDetailsService {
         return null;
     }
 
+    public AppUser getUser(String username){
+        return appUserRepository.findByEmail(username).orElse(null);
+    }
+
 
 }

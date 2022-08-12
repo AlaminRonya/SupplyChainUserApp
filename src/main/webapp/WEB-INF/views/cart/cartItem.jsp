@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%--
   Created by IntelliJ IDEA.
   User: User
@@ -14,35 +15,43 @@
 </head>
 <body>
 
+<jsp:include page="../include/navbar_dealer.jsp"/>
+
 <div class="container" style="margin-top: 30px">
     <div class="row">
         <div class="col-sm-3">
             <h4>Categories</h4>
             <ul class="list-group">
-                <a href=""><li class="list-group-item">All Products</li></a>
-                <%--                    <a href="" th:each="category, iStat : ${categories}"--%>
-                <%--                       th:href="@{/shop/category/{id}(id=${category.id})}"><li--%>
-                <%--                            class="list-group-item" th:text="${category.name}"></li></a>--%>
-
+                <a href="${pageContext.request.contextPath}/page/v1/dealer/home"><li class="list-group-item">All Products</li></a>
+                <c:forEach var="responseDto" items="${responseCategoriesDto}">
+                    <a href="${pageContext.request.contextPath}/page/v1/dealer/category/search/${responseDto}">
+                        <li class="list-group-item" >
+                                ${responseDto}
+                        </li>
+                    </a>
+                </c:forEach>
             </ul>
         </div>
 
         <div class="col-sm-9">
-            <c:forEach var="responseProductDto" items="${responseProductsDto}">
+            <c:forEach var="responseCartItemDto" items="${responseCartItemsDto}">
                 <div class="card" style="margin-top: 20px">
                     <div class="row no-gutters">
                         <div class="col-sm-5 d-flex justify-content-center">
-
-                            <img src="<c:url value="/page/v1/user/image-manual-response/${responseProductDto.getPhotosAttachmentList().get(0).getId()}"/>" alt="img" class="" height="150px" width="150px" />
-
+                            <img src="<c:url value="/page/v1/user/image-manual-response/${responseCartItemDto.getProduct().getPhotosAttachmentList().get(0).getId()}"/>" alt="img" class="" height="150px" width="150px" />
                         </div>
                         <div class="col-sm-7 d-flex justify-content-center">
                             <div class="card-body">
-                                <h5>Product Name: <span>${responseProductDto.name}</span></h5>
-                                <p>TK: <span>${responseProductDto.price}</span></p>
-                                <p>Product Description: <span>${responseProductDto.description}</span></p>
-                                <p>Product SKU: <span>${responseProductDto.SKU}</span></p>
-                                <a href="${pageContext.request.contextPath}${responseProductDto.id}" class="btn btn-warning">View Product</a>
+                                <h5>Id: <span>${responseCartItemDto.id}</span></h5>
+                                <h5>Username: <span>${responseCartItemDto.username}</span></h5>
+                                <h5>Qty: <span>${responseCartItemDto.quantity}</span></h5>
+                                <h5>Product Name: <span>${responseCartItemDto.getProduct().getCategory().getName()}</span></h5>
+<%--                                <p id="price">Total TK: <span>${responseCartItemDto.getProduct().getPrice() * responseCartItemDto.quantity}</span></p>--%>
+                                <p>TK: <span id="price">${responseCartItemDto.getProduct().getPrice()}</span></p>
+                                <p>Discount: <span>${responseCartItemDto.getProduct().getDiscount().getDiscountPercent()}</span></p>
+<%--                                <p>Total TK: <span id="total_price"></span></p>--%>
+
+                                <a href="${pageContext.request.contextPath}/page/v1/dealers/products/order/${responseCartItemDto.id}" class="btn btn-warning">Order Item</a>
                             </div>
 
                         </div>
@@ -58,4 +67,44 @@
     </div>
 </div>
 </body>
+
+<script type="text/javascript">
+    var incrementButton = document.getElementsByName("inc");
+    var decrementButton = document.getElementsByName("dec");
+    console.log(incrementButton)
+    console.log(decrementButton)
+    // function incrementValue() {
+    //     // let element = document.getElementById("price");
+    //     // const result1 = element.textContent;
+    //     // let val = parseFloat(result1);
+    //     //
+    //     // console.log(typeof val);
+    //     const elements = document.getElementsByClassName('number');
+    //     for (var i = 0; i < elements.length; i++){
+    //         var button = elements[i];
+    //         button.addEventListener('click', function (event){
+    //             var buttonClick = event.target;
+    //             var input = buttonClick
+    //         });
+    //     }
+    //
+    //     let value = parseInt(document.getElementById('number').value, 10);
+    //     value = isNaN(value) ? 0 : value;
+    //     if(value<10){
+    //         value++;
+    //         document.getElementById('number').value = value;
+    //     }
+    //     // val = val * value;
+    //     // document.getElementById("total_price").innerHTML = val.toString();
+    // }
+    // function decrementValue() {
+    //     let value = parseInt(document.getElementById('number').value, 10);
+    //     value = isNaN(value) ? 0 : value;
+    //     if(value>1){
+    //         value--;
+    //         document.getElementById('number').value = value;
+    //     }
+    //
+    // }
+</script>
 </html>

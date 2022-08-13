@@ -16,13 +16,13 @@
                     <a class="nav-link" href="${pageContext.request.contextPath}/page/v1/dealer/home">Home</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link"  href="${pageContext.request.contextPath}/">Account</a>
+                    <a class="nav-link"  href="${pageContext.request.contextPath}/page/v1/dealer/account">Account</a>
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link"  href="${pageContext.request.contextPath}/page/v1/dealers/products/view/order">Order</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link"  href="${pageContext.request.contextPath}/">Delivery Pending</a>
+                    <a class="nav-link"  href="${pageContext.request.contextPath}/page/v1/dealer/order">Order Details</a>
                 </li>
 
                 <li class="nav-item active">

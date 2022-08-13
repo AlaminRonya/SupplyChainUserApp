@@ -2,9 +2,14 @@ package com.alamin_tanveer.supplychain.controller;
 
 import com.alamin_tanveer.supplychain.dto.response.ResponseProductDto;
 import com.alamin_tanveer.supplychain.service.DealerService;
+import com.alamin_tanveer.supplychain.service.order_process.OrderDetailsService;
+import com.alamin_tanveer.supplychain.service.order_process.OrderService;
+import com.alamin_tanveer.supplychain.service.order_process.PaymentDetailsService;
 import com.alamin_tanveer.supplychain.service.product.ProductCategoryService;
 import com.alamin_tanveer.supplychain.service.product.ProductService;
+import com.alamin_tanveer.supplychain.utils.CurrentUser;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +25,10 @@ public class DealerController {
     private ProductService productService;
     @Autowired
     private ProductCategoryService productCategoryService;
+    @Autowired
+    private PaymentDetailsService paymentDetailsService;
+    @Autowired
+    private OrderDetailsService orderDetailsService;
 
     @GetMapping("/home")
     public String homePage(Model model){
@@ -35,6 +44,18 @@ public class DealerController {
         model.addAttribute("responseProductsDto", allProductByCategoryName);
         System.out.println(categoryName);
         return "dealer/dealerHome";
+    }
+
+    @GetMapping("/account")
+    public String getAccountPage(Model model){
+        model.addAttribute("paymentDetails", paymentDetailsService.getAllPaymentDetails(CurrentUser.getCurrentUserName()));
+        return "account/paymentDetails";
+    }
+
+    @GetMapping("/order")
+    public String getOrderPage(Model model){
+        model.addAttribute("orderDetails", orderDetailsService.getAllOrderDetails(CurrentUser.getCurrentUserName()));
+        return "orderDetails/orderDetails";
     }
 
 }

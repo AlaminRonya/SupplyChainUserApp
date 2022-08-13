@@ -41,9 +41,10 @@ public class UserController {
             return "redirect:/page/v1/user/addDealer";
         }
 
+        dto.setUsername(CurrentUser.getCurrentUserName());
         dealerService.addDealer(dto, tinFile, photo);
 
-        dto.setUsername(CurrentUser.getCurrentUserName());
+
         System.out.println("=========>"+dto);
         model.addAttribute("currentUserEmail", CurrentUser.getCurrentUserName());
         return "redirect:/page/v1/user/addDealer";

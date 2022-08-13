@@ -27,16 +27,16 @@
 
             <div class="form-group">
                 <label for="accountNumber">Bank Account number</label>
-                <form:input type="number" name="accountNumber" id="accountNumber" path="userBankAccountNumber"  placeholder="Your Bank Account number" class="form-control form-control-lg"/>
+                <form:input type="text" name="accountNumber" id="accountNumber" path="userBankAccountNumber"  placeholder="Your Bank Account number" class="form-control form-control-lg"/>
             </div>
 
             <div class="form-group">
                 <label for="name">NID</label>
-                <form:input type="number" name="name" id="name" path="userNID"  placeholder="Your NID number" class="form-control form-control-lg"/>
+                <form:input type="text" name="name" id="name" path="userNID"  placeholder="Your NID number" class="form-control form-control-lg"/>
             </div>
             <div class="form-group">
                 <label for="name">Trade License number </label>
-                <form:input type="number" name="name" id="name" path="tradeLicenseNumber"  placeholder="Your Trade License number" class="form-control form-control-lg"/>
+                <form:input type="text" name="name" id="name" path="tradeLicenseNumber"  placeholder="Your Trade License number" class="form-control form-control-lg"/>
             </div>
 
             <div class="form-group">

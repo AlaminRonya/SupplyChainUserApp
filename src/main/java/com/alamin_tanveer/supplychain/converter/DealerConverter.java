@@ -15,7 +15,7 @@ public class DealerConverter {
 
     public Dealer getDtoToPojo(DealerDto dto){
         Dealer dealer = new Dealer();
-        dealer.setUsername(dealer.getUsername());
+        dealer.setUsername(dto.getUsername());
         dealer.setPhoneNumber(dto.getPhoneNumber());
         dealer.setDob(DateUtils.convertToDateViaInstant(dto.getDob()));
         dealer.setUserNID(dto.getUserNID());

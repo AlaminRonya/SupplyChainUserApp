@@ -67,7 +67,7 @@ public class DealerService {
         final Attachment photoAttachment = Utils.saveImage(photo, Constant.USER_UPLOAD_PROFILE);
         final Attachment profilePhoto = attachmentService.addAttachment(photoAttachment);
 
-        final AppUser appUser = appUserRepository.findByEmail(CurrentUser.getCurrentUserName()).orElse(null);
+        final AppUser appUser = appUserRepository.findByEmail(dto.getUsername()).orElse(null);
 
         if (appUser != null && tinFilePdf != null && profilePhoto != null){
             final Dealer dealer = dealerConverter.getDtoToPojo(dto);

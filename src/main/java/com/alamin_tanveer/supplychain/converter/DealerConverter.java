@@ -11,10 +11,11 @@ import java.util.Date;
 
 @Component
 public class DealerConverter {
-    private LocalDate localDate = LocalDate.now();
+    private final LocalDate localDate = LocalDate.now();
 
     public Dealer getDtoToPojo(DealerDto dto){
         Dealer dealer = new Dealer();
+        dealer.setUsername(dealer.getUsername());
         dealer.setPhoneNumber(dto.getPhoneNumber());
         dealer.setDob(DateUtils.convertToDateViaInstant(dto.getDob()));
         dealer.setUserNID(dto.getUserNID());

@@ -10,6 +10,7 @@ import com.alamin_tanveer.supplychain.entities.order_process.CartItem;
 import com.alamin_tanveer.supplychain.entities.product.Product;
 import com.alamin_tanveer.supplychain.repositories.order_process.CartItemRepo;
 import com.alamin_tanveer.supplychain.service.product.ProductService;
+import com.alamin_tanveer.supplychain.utils.Constant;
 import com.alamin_tanveer.supplychain.utils.CurrentUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -168,6 +169,9 @@ public class CartItemService {
 
         }
         return 0.0;
+    }
+    public Double getTotalPriceAndOthers(){
+        return getTotalPrice() + (getTotalPrice() * (Constant.VAT/100))+(getTotalCarton()*Constant.SHIPPING_FEE);
     }
     public Integer getTotalCarton(){
         final List<OrderCartItemDto> orderCartItemDtos = orderCartItemByUser();

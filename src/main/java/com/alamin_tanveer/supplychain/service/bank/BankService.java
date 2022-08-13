@@ -1,5 +1,6 @@
 package com.alamin_tanveer.supplychain.service.bank;
 
+import com.alamin_tanveer.supplychain.entities.bank.account.Account;
 import com.alamin_tanveer.supplychain.entities.bank.account.Bank;
 import com.alamin_tanveer.supplychain.repositories.bank.AccountRepo;
 import com.alamin_tanveer.supplychain.repositories.bank.BankRepo;
@@ -19,11 +20,11 @@ public class BankService {
     private CustomerRepo customerRepo;
 
     public Boolean withdraw(String accountNumber, Double amount){
-        final Bank bank = getBank(accountNumber);
-        if (bank == null){
+        final Account account = getBank(accountNumber);
+        if (account == null){
             return false;
         }
-        final Double balance = bank.getAccount().getBalance();
+        final Double balance = account.getBalance();
         if ( balance <= amount){
             return false;
         }
@@ -33,13 +34,14 @@ public class BankService {
         return true;
     }
 
-    private Bank getBank(String number){
-        final Bank bank = bankRepo.findUserByAccount(number).orElse(null);
-        if (bank == null){
+    private Account getBank(String number){
+//        final Bank bank = bankRepo.findUserByAccount(number).orElse(null);
+        final Account account = accountRepo.findByAccountNumber(number).orElse(null);
+        if (account == null){
             System.out.println("Incorrect Account number");
             return null;
         }
-        return bank;
+        return account;
     }
     private void updateBalance(String number, Double amount){
         accountRepo.update(number, amount);

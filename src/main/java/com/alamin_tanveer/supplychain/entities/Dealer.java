@@ -26,6 +26,7 @@ public class Dealer {
     )
     @Setter(AccessLevel.NONE)
     private Long id;
+    private String username;
     private String phoneNumber;
     private Date dob;
     private String userNID;

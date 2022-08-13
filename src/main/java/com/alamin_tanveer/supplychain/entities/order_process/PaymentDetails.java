@@ -1,8 +1,10 @@
 package com.alamin_tanveer.supplychain.entities.order_process;
 
+import com.alamin_tanveer.supplychain.enums.DealerPaymentStatus;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -10,6 +12,7 @@ import java.util.Date;
 @Data
 @Entity
 @Table(name = "payment_details")
+@ToString
 public class PaymentDetails {
     @SequenceGenerator(
             name = "payment_details_sequence",
@@ -24,8 +27,10 @@ public class PaymentDetails {
     @Setter(AccessLevel.NONE)
     private Long id;
     private Double amount;
+    private Double due;
     private Date createdAt;
     private Date modifiedAt;
     private String username;
-    private String status;
+    @Enumerated(EnumType.STRING)
+    private DealerPaymentStatus status;
 }

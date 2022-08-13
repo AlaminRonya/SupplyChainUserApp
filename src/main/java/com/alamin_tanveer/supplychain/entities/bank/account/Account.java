@@ -24,7 +24,7 @@ public class Account {
     @Setter(AccessLevel.NONE)
     private Long id;
     private String  accountNumber;
-    protected Double balance = 0.0;
+    protected Double balance = 12000.0;
     private Date createdAt;
     private Date modifiedAt;
     private Date deletedAt;

@@ -40,6 +40,7 @@ public class DealerService {
 
     public void addDealer(DealerDto dto, MultipartFile tinFile, MultipartFile photo) throws IOException {
 
+
         AppDealerRegistrationValidator.ValidationResult result = AppDealerRegistrationValidator.isPhoneNumberValid()
                 .and(AppDealerRegistrationValidator.isAdultValid())
                 .and(AppDealerRegistrationValidator.isAccountNumberValid())
@@ -85,4 +86,9 @@ public class DealerService {
     public List<String> getAllCategory(){
         return productCategoryRepo.findAll().stream().map(ProductCategory::getName).toList();
     }
+
+    public Dealer getDealerByAppUser(String username){
+        return dealerRepo.getDealerByUsername(username).orElse(null);
+    }
+
 }
